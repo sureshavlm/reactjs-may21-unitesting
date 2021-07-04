@@ -16,30 +16,29 @@ afterEach(() => {
     container = null;
 });
 
-//test case
-it('renders user data', async () => {
-
+it('renders user data', async() => {
     const fakeUser = {
         name: "John Sith",
         age: 32,
         address: "123, Avenue 1, TX"
     };
 
-    //SpyOn http://localhost:3000/123
-    jest.spyOn(global, "fetch").mockImplementation(() => {
+    jest.spyOn(global, "fetch").mockImplementation(() => 
         Promise.resolve({
             json: () => Promise.resolve(fakeUser)
-        });
-    });
+        })
+    ); 
 
     await act(async() => {
         render(<User id = "123"/>, container);
     });
-    
 
-    expect(container.querySelector('summary').textContent.toBe(fakeUser.name));
-    expect(container.querySelector("strong").textContent.toBe(fakeUser.age));
+    /**
+     * expect(1).toBe(1); 
+     * expecting 1 should equal 1
+    */
+    expect(container.querySelector('summary').textContent).toBe(fakeUser.name);
+    expect(parseInt(container.querySelector("strong").textContent)).toBe(fakeUser.age);
 
-    global.fetch.mockRestore();// restroing mock object back to another test to avid memory leaks
-
+    global.fetch.mockRestore();
 });

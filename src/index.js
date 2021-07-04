@@ -8,7 +8,7 @@ import User from './user';
 ReactDOM.render(
   <React.StrictMode>
     { /*  <Hello /> */ }
-     <User/>
+     
   </React.StrictMode>,
   document.getElementById('root')
 );
